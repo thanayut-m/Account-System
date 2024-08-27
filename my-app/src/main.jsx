@@ -8,10 +8,6 @@ import Expenses from "./pages/expenses/Expenses.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
-  },
-  {
-    path: "/Expenses",
     element: <Expenses />,
   },
 ]);
