@@ -1,34 +1,35 @@
 import { useState } from "react";
 
 function Expenses() {
-  const [isOpen ,setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
-  }
-  
+  };
+
   return (
-    <>
-      <div className="container mx-auto">
+    <div className="bg-[#D4EEF1] min-h-screen">
+      <div className="container mx-auto ">
         <div>
           <h1 className="text-center text-3xl font-bold underline">
             Pages Expenses
           </h1>
         </div>
-        <div className="grid grid-cols-12 gap-4 mt-3 p-2 bg-[#00ffe0]">
-          <div className="col-span-4 mr-1">
-            <input
-              className="p-2 rounded-lg w-full"
-              placeholder="ค้าหา"
-              type="text"
-            />
-          </div>
+        <div className="bg-[#ffffff] rounded-2xl shadow-2xl  mt-3 p-2 ">
+          <div className="grid grid-cols-12 gap-4">
+            <div className="col-span-4 mr-1">
+              <input
+                className="p-2 rounded-lg w-full"
+                placeholder="ค้าหา"
+                type="text"
+              />
+            </div>
 
-          <div className="col-span-2 mr-1">
-            <button className="p-2 rounded-lg w-full bg-[#ffffff]">
-              ประเภท
-            </button>
-            {/* <button
+            <div className="col-span-2 mr-1">
+              <button className="p-2 rounded-lg w-full bg-[#ffffff]">
+                ประเภท
+              </button>
+              {/* <button
                 type="button"
                 class="inline-flex justify-start w-full rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 id="menu-button"
@@ -50,118 +51,98 @@ function Expenses() {
                   />
                 </svg>
               </button> */}
+            </div>
+            <div className="col-span-6 mr-1">
+              <input
+                className="p-2 rounded-lg w-full"
+                placeholder="ค้าหา"
+                type="text"
+              />
+            </div>
           </div>
-          <div className="col-span-6 mr-1">
-            <input
-              className="p-2 rounded-lg w-full"
-              placeholder="ค้าหา"
-              type="text"
-            />
+          <div className="flex justify-end">
+            <button className="p-2 rounded-lg w-[300px] bg-blue-500 bg-blue-500">
+              <i class="fa fa-plus mr-2"/>
+              เพิ่มข้อมูล
+            </button>
           </div>
         </div>
-        <div className="flex justify-center mt-4">
-          <div className="table border border-gray-400 rounded-lg w-full">
-            <div className="table-header-group border-b border-gray-400">
-              <div className="table-row ">
-                <div className="table-cell py-4 text-center font-bold w-[80px] border-b border-r border-gray-400">
-                  ลำดับ
-                </div>
-                <div className="table-cell py-4  text-center font-bold  w-[300px] border-b border-r border-gray-400">
+        <div className="flex justify-center mt-6 ">
+          <table className="bg-[#ffffff] table-fixed  text-center rounded-2xl w-full shadow-2xl">
+            <thead>
+              <tr>
+                <td className="px-4 py-3 border-r-2 border-Gray-600">ลำดับ</td>
+                <td className="px-4 py-3 border-r-2 border-Gray-600">งวดที่</td>
+                <td className="px-4 py-3 border-r-2 border-Gray-600 w-[350px]">
                   ชื่อรายการ
-                </div>
-                <div className="table-cell py-4  text-center font-bold  w-[100px] border-b border-r border-gray-400">
-                  รายรับ
-                </div>
-                <div className="table-cell py-4  text-center font-bold  w-[100px] border-b border-r border-gray-400">
+                </td>
+                <td className="px-4 py-3 border-r-2 border-Gray-600">รายรับ</td>
+                <td className="px-4 py-3 border-r-2 border-Gray-600">
                   รายจ่าย
-                </div>
-                <div className="table-cell py-4  text-center font-bold  w-[150px] border-b border-r border-gray-400">
-                  ประเภท
-                </div>
-                <div className="table-cell py-4  text-center font-bold  w-[80px] border-b border-r border-gray-400">
-                  งวดที่
-                </div>
-                <div className="table-cell py-4  text-center font-bold  w-[160px] border-b border-r border-gray-400">
+                </td>
+                <td className="px-4 py-3 border-r-2 border-Gray-600">ประเภท</td>
+                <td className="px-4 py-3 border-r-2 border-Gray-600">เครดิต</td>
+                <td className="px-4 py-3 border-r-2 border-Gray-600">
                   ครบกำหนดจ่าย
-                </div>
-                <div className="table-cell py-4  text-center font-bold  w-[150px] border-b border-r border-gray-400">
-                  สถานนะ
-                </div>
-                <div className="table-cell py-4  text-center font-bold  w-[200px] border-b border-gray-400">
+                </td>
+                <td className="px-4 py-3 border-r-2 border-Gray-600">สถานะ</td>
+                <td className="px-4 py-3 w-[300px] border-l-2 border-Gray-600">
                   หมายเหตุ
-                </div>
-              </div>
-            </div>
-            <div className="table-row-group">
-              <div className="table-row border-b border-gray-400">
-                <div className="table-cell text-center border-b border-r border-gray-400">
-                  1
-                </div>
-                <div className="table-cell text-center border-b border-r border-gray-400">
-                  ค่างวดรถ toyota Ativ 2022
-                </div>
-                <div className="table-cell text-center border-b border-r border-gray-400">
-                  -
-                </div>
-                <div className="table-cell text-center border-b border-r border-gray-400">
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-t-2 border-Gray-600 px-4">
+                <td className="border-r-2 border-Gray-600 px-4">1</td>
+                <td className="border-r-2 border-Gray-600 px-4">20 / 72</td>
+                <td className="border-r-2 border-Gray-600 px-4 ">
+                  <div className="text-start">ค่างวดรถ toyota Ativ 2022</div>
+                </td>
+                <td className="border-r-2 border-Gray-600 px-4">-</td>
+                <td className="border-r-2 border-Gray-600 px-4">
                   {parseInt(10190).toLocaleString("th-TH")}
-                </div>
-                <div className="table-cell text-center border-b border-r border-gray-400">
-                  ยานพาหนะ
-                </div>
-                <div className="table-cell text-center border-b border-r border-gray-400">
-                  20 / 72
-                </div>
-                <div className="table-cell text-center border-b border-r border-gray-400">
-                  28/08/2024
-                </div>
-                <div className="flex items-center justify-center border-b border-r border-gray-400">
-                  <div className="text-center rounded-3xl bg-red-500 mt-1 mb-1 w-[90px]">
-                    ยังไม่จ่าย
-                  </div>
-                </div>
-                <div className="table-cell text-left border-b border-gray-400">
-                  <div className="ml-1">ทดสอบ</div>
-                </div>
-              </div>
-            </div>
-            <div className="table-row-group">
-              <div className="table-row border-b border-gray-400">
-                <div className="table-cell text-center border-r border-gray-400">
-                  2
-                </div>
-                <div className="table-cell text-center border-r border-gray-400">
-                  ค่างวดรถ toyota Ativ 2022
-                </div>
-                <div className="table-cell text-center border-r border-gray-400">
-                  -
-                </div>
-                <div className="table-cell text-center border-r border-gray-400">
-                  {parseInt(10190).toLocaleString("th-TH")}
-                </div>
-                <div className="table-cell text-center border-r border-gray-400">
-                  ยานพาหนะ
-                </div>
-                <div className="table-cell text-center border-r border-gray-400">
-                  20 / 72
-                </div>
-                <div className="table-cell text-center border-r border-gray-400">
-                  28/08/2024
-                </div>
-                <div className="flex items-center justify-center border-r border-gray-400">
+                </td>
+
+                <td className="border-r-2 border-Gray-600 px-4">ยานพาหนะ</td>
+                <td className="border-r-2 border-Gray-600 px-4">KTC</td>
+                <td className="border-r-2 border-Gray-600 px-4">28/08/2024</td>
+                <td className="border-r-2 border-Gray-600 px-4">
                   <div className="text-center rounded-3xl bg-green-600 mt-1 mb-1 w-[90px]">
                     จ่ายแล้ว
                   </div>
-                </div>
-                <div className="table-cell text-left">
-                  <div className="ml-1">ทดสอบ</div>
-                </div>
-              </div>
-            </div>
-          </div>
+                </td>
+                <td className="border-l-2 border-Gray-600 px-4">
+                  <div className="ml-1 text-start">ทดสอบ</div>
+                </td>
+              </tr>
+              <tr className="border-t-2 border-Gray-600 px-4">
+                <td className="border-r-2 border-Gray-600 px-4">2</td>
+                <td className="border-r-2 border-Gray-600 px-4">20 / 72</td>
+                <td className="border-r-2 border-Gray-600 px-4 ">
+                  <div className="text-start">ค่างวดรถ toyota Ativ 2022</div>
+                </td>
+                <td className="border-r-2 border-Gray-600 px-4">-</td>
+                <td className="border-r-2 border-Gray-600 px-4">
+                  {parseInt(10190).toLocaleString("th-TH")}
+                </td>
+
+                <td className="border-r-2 border-Gray-600 px-4">ยานพาหนะ</td>
+                <td className="border-r-2 border-Gray-600 px-4">KTC</td>
+                <td className="border-r-2 border-Gray-600 px-4">28/08/2024</td>
+                <td className="border-r-2 border-Gray-600 px-4">
+                  <div className="text-center rounded-3xl bg-red-500 mt-1 mb-1 w-[90px]">
+                    ยังไม่จ่าย
+                  </div>
+                </td>
+                <td className="border-l-2 border-Gray-600 px-4">
+                  <div className="ml-1 text-start">ทดสอบ</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
