@@ -1,11 +1,24 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
+import Modal from "../components/Modal";
 
 function Expenses() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+  const handelConfirmItem = () => {
+    Swal.fire({
+      title: "ยืนยัน",
+      text: 'ยืนยันการจ่ายเงิน',
+      icon: 'question',
+      showConfirmButton: true,
+      showCancelButton: true
+    }).then(res => {
+      if (res.isConfirmed) {
+        console.log('ConfirmItem')
+      }
+    })
+  }
 
   return (
     <div className="bg-[#D4EEF1] min-h-screen">
@@ -29,28 +42,6 @@ function Expenses() {
               <button className="p-2 rounded-lg w-full bg-[#ffffff]">
                 ประเภท
               </button>
-              {/* <button
-                type="button"
-                class="inline-flex justify-start w-full rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                id="menu-button"
-                aria-expanded="true"
-                aria-haspopup="true"
-              >
-                ประเภท
-                <svg
-                  class="-mr-1 ml-2 h-5 w-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.23 7.21a.75.75 0 011.06 0l2.72 2.72 2.72-2.72a.75.75 0 111.06 1.06l-3.25 3.25a.75.75 0 01-1.06 0L5.23 8.27a.75.75 0 010-1.06z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </button> */}
             </div>
             <div className="col-span-6 mr-1">
               <input
@@ -61,8 +52,8 @@ function Expenses() {
             </div>
           </div>
           <div className="flex justify-end">
-            <button className="p-2 rounded-lg w-[300px] bg-blue-500 bg-blue-500">
-              <i class="fa fa-plus mr-2"/>
+            <button onClick={() => setIsModalOpen(true)} className="p-2 rounded-lg w-[300px] bg-blue-500 text-white">
+              <i className="fa fa-plus mr-2" />
               เพิ่มข้อมูล
             </button>
           </div>
@@ -96,7 +87,7 @@ function Expenses() {
                 <td className="border-r-2 border-Gray-600 px-4">1</td>
                 <td className="border-r-2 border-Gray-600 px-4">20 / 72</td>
                 <td className="border-r-2 border-Gray-600 px-4 ">
-                  <div className="text-start">ค่างวดรถ toyota Ativ 2022</div>
+                  <Link to={'/expenseslist'}><div className="text-start">ค่างวดรถ toyota Ativ 2022</div></Link>
                 </td>
                 <td className="border-r-2 border-Gray-600 px-4">-</td>
                 <td className="border-r-2 border-Gray-600 px-4">
@@ -119,7 +110,7 @@ function Expenses() {
                 <td className="border-r-2 border-Gray-600 px-4">2</td>
                 <td className="border-r-2 border-Gray-600 px-4">20 / 72</td>
                 <td className="border-r-2 border-Gray-600 px-4 ">
-                  <div className="text-start">ค่างวดรถ toyota Ativ 2022</div>
+                  <Link to={'/expenseslist'}><div className="text-start">ค่างวดรถ toyota Ativ 2022</div></Link>
                 </td>
                 <td className="border-r-2 border-Gray-600 px-4">-</td>
                 <td className="border-r-2 border-Gray-600 px-4">
@@ -130,7 +121,7 @@ function Expenses() {
                 <td className="border-r-2 border-Gray-600 px-4">KTC</td>
                 <td className="border-r-2 border-Gray-600 px-4">28/08/2024</td>
                 <td className="border-r-2 border-Gray-600 px-4">
-                  <div className="text-center rounded-3xl bg-red-500 mt-1 mb-1 w-[90px]">
+                  <div onClick={handelConfirmItem} className="text-center rounded-3xl bg-red-500 mt-1 mb-1 w-[90px]">
                     ยังไม่จ่าย
                   </div>
                 </td>
@@ -142,6 +133,79 @@ function Expenses() {
           </table>
         </div>
       </div>
+
+      <Modal isOpen={isModalOpen} title="เพิ่มข้อมูล" onClose={() => setIsModalOpen(false)}>
+        <div className='border-2 p-2'>
+          <div className="flex flex-row space-x-2">
+            <div className="flex flex-col w-full">
+              <label className="mb-1 text-gray-700">ชื่อรายการ</label>
+              <input
+                type="text"
+                className="border border-gray-600 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+          <div className="flex flex-row space-x-2">
+            <div className="flex flex-col">
+              <label className="mb-1 text-gray-700">จำนวนผ่อน</label>
+              <input
+                type="number"
+                className="border border-gray-600 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="mb-1 text-gray-700">รายรับ</label>
+              <input
+                type="number"
+                className="border border-gray-600 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="mb-1 text-gray-700">รายจ่าย</label>
+              <input
+                type="number"
+                className="border border-gray-600 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+          <div className="flex flex-row space-x-2">
+            <div className="flex flex-col">
+              <label className="mb-1 text-gray-700">ประเภท</label>
+              <input
+                type="text"
+                className="border border-gray-600 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="mb-1 text-gray-700">เครดิต</label>
+              <input
+                type="text"
+                className="border border-gray-600 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+          <div className="flex flex-row space-x-2">
+            <div className="flex flex-col">
+              <label className="mb-1 text-gray-700">ครบกำหนดจ่าย</label>
+              <input
+                type="text"
+                className="border border-gray-600 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+          <div className="flex flex-col w-full">
+            <label className="mb-1 text-gray-700">หมายเหตุ</label>
+            <input
+              type="text"
+              className="border border-gray-600 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <div className='flex justify-end mt-5'>
+            <button className="p-2 rounded-lg w-auto bg-blue-500 text-white">บันทึกข้อมูล</button>
+          </div>
+        </div>
+      </Modal>
+
     </div>
   );
 }
